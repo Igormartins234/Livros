@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentegoat - Biblioteca de Elite para Conquista Financeira</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+        
+        :root {
+            --emerald: #10b981;
+            --emerald-dark: #059669;
+            --emerald-light: #34d399;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: linear-gradient(135deg, #0a0a0a 0%, #111827 100%);
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .font-jakarta {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.36);
+        }
+        
+        .glass-emerald {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        
+        .emerald-glow {
+            box-shadow: 0 0 60px rgba(16, 185, 129, 0.3), 0 0 120px rgba(16, 185, 129, 0.1);
+        }
+        
+        .book-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+        
+        .book-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #10b981 0%, #34d399 50%, #10b981 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shine 3s linear infinite;
+        }
+        
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, #10b981, #34d399);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        .modal-open {
+            overflow: hidden;
+        }
+        
+        /* Swiper Customization */
+        .swiper-pagination-bullet {
+            background: rgba(255, 255, 255, 0.3) !important;
+            opacity: 1 !important;
+            width: 8px !important;
+            height: 8px !important;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: var(--emerald) !important;
+            transform: scale(1.3);
+        }
+        
+        .swiper-button-next, .swiper-button-prev {
+            color: var(--emerald) !important;
+            background: rgba(255, 255, 255, 0.05);
+            width: 44px !important;
+            height: 44px !important;
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+        }
+        
+        .swiper-button-next:after, .swiper-button-prev:after {
+            font-size: 20px !important;
+        }
+        
+        /* Estilos para imagens */
+        img {
+            transition: all 0.3s ease;
+        }
+        
+        .book-card img {
+            border-radius: 12px;
+        }
+        
+        .modal img {
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Efeito de zoom suave nas imagens dos cards */
+        .swiper-slide img:hover {
+            transform: scale(1.05);
+        }
+    .notification-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 300px;
+    }
+    
+    .notification {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(5, 150, 105, 0.95) 100%);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 15px;
+        padding: 15px;
+        box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
+        transform: translateX(100%);
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        animation: slideIn 0.5s forwards, fadeOut 0.5s 7s forwards;
+    }
+    
+    .notification.show {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes fadeOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+    
+    .notification-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+    }
+    
+    .notification-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+    
+    .notification-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .notification-info h4 {
+        font-size: 13px;
+        font-weight: 700;
+        margin: 0;
+    }
+    
+    .notification-info p {
+        font-size: 11px;
+        opacity: 0.9;
+        margin: 0;
+    }
+    
+    .notification-content {
+        font-size: 13px;
+        margin: 5px 0;
+        line-height: 1.4;
+    }
+    
+    .notification-time {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-size: 11px;
+        opacity: 0.8;
+        margin-top: 8px;
+    }
+    
+    .notification-time i {
+        font-size: 10px;
+    }
+    
+    .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background: #ef4444;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        font-weight: bold;
+        animation: pulse 1.5s infinite;
+    }
+    
+    .notification-counter {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+        color: white;
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+        z-index: 1001;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+        animation: bounce 2s infinite;
+    }
+    
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+        40% {transform: translateY(-5px);}
+        60% {transform: translateY(-3px);}
+    }
+    
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+
+    </style>
+</head>
+<body class="selection:bg-emerald-500 selection:text-white">
+
+    <!-- BARRA DE URGÊNCIA -->
+    <div class="bg-gradient-to-r from-emerald-600 to-emerald-500 text-black py-3 text-sm font-black uppercase tracking-[0.2em] text-center sticky top-0 z-50">
+        <div class="container mx-auto px-4 flex items-center justify-center gap-3">
+            <i class="fas fa-bolt animate-pulse"></i>
+            <span>OFERTA RELÂMPAGO: <span id="timer">09:57</span> PARA 70% DE DESCONTO</span>
+            <i class="fas fa-bolt animate-pulse"></i>
+        </div>
+        <div class="h-1 bg-black/20 w-full mt-2">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="pt-20 pb-16 px-4 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-emerald-500/5 via-transparent to-transparent"></div>
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-6">
+                <span class="text-emerald-400 text-sm font-bold">🔥 EXCLUSIVO PARA VISITANTES</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-8xl font-jakarta font-extrabold tracking-tighter mb-8 leading-tight">
+                A BIBLIOTECA QUE FORMA
+                <span class="gradient-text block mt-2">MENTES MILIONÁRIAS</span>
+            </h1>
+            
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12 font-medium leading-relaxed">
+                Descubra os <span class="text-white font-bold">35 livros secretos</span> que ensinam as estratégias reais de riqueza, poder e influência — 
+                conhecimento que as universidades nunca ensinam e a elite não compartilha.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                <div class="glass rounded-2xl p-4 flex items-center gap-3">
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                    <div>
+                        <div class="font-bold">4.9/5.0</div>
+                        <div class="text-xs text-gray-400">Avaliação dos alunos</div>
+                    </div>
+                </div>
+                <div class="glass rounded-2xl p-4 flex items-center gap-3">
+                    <i class="fas fa-users text-emerald-400 text-xl"></i>
+                    <div>
+                        <div class="font-bold">+8.421</div>
+                        <div class="text-xs text-gray-400">Membros Elite</div>
+                    </div>
+                </div>
+                <div class="glass rounded-2xl p-4 flex items-center gap-3">
+                    <i class="fas fa-shield-alt text-blue-400 text-xl"></i>
+                    <div>
+                        <div class="font-bold">Garantia</div>
+                        <div class="text-xs text-gray-400">7 Dias</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOOKS PREVIEW SLIDER -->
+    <section class="py-12 px-4 max-w-7xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-5xl font-jakarta font-bold mb-6">Conheça os <span class="gradient-text">Livros de Elite</span></h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">Clique em qualquer livro para ver detalhes exclusivos e prévia do conteúdo</p>
+        </div>
+        
+        <!-- Swiper -->
+        <div class="swiper booksSwiper relative">
+            <div class="swiper-wrapper pb-12">
+                <!-- Livro 1 -->
+                <div class="swiper-slide">
+                    <div class="book-card glass rounded-3xl p-6 h-full" onclick="openBookModal(0)">
+                        <div class="h-48 mb-6 rounded-2xl overflow-hidden relative">
+                            <img src="img/img1.jpg" 
+                                 alt="Os Segredos da Mente Milionária" 
+                                 class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="inline-block px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-bold">Finanças</span>
+                            <h3 class="text-xl font-bold mt-3 mb-2">Os Segredos da Mente Milionária</h3>
+                            <p class="text-gray-400 text-sm mb-4">T. Harv Eker • 4.7/5 ⭐</p>
+                            <p class="text-gray-300 text-sm line-clamp-2">Reescreva seu "modelo de dinheiro" e aprenda as 17 formas de pensar dos ricos.</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-emerald-400 font-bold">215 páginas</span>
+                            <button class="text-emerald-400 hover:text-emerald-300">
+                                <i class="fas fa-eye mr-1"></i> Prévia
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Livro 2 -->
+                <div class="swiper-slide">
+                    <div class="book-card glass rounded-3xl p-6 h-full" onclick="openBookModal(1)">
+                        <div class="h-48 mb-6 rounded-2xl overflow-hidden relative">
+                            <img src="img/img3.jpg" 
+                                 alt="As 48 Leis do Poder" 
+                                 class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="inline-block px-3 py-1 bg-purple-500/10 text-purple-400 rounded-full text-xs font-bold">Poder</span>
+                            <h3 class="text-xl font-bold mt-3 mb-2">As 48 Leis do Poder</h3>
+                            <p class="text-gray-400 text-sm mb-4">Robert Greene • 4.8/5 ⭐</p>
+                            <p class="text-gray-300 text-sm line-clamp-2">As leis atemporais que ditam o poder em qualquer situação social ou profissional.</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-emerald-400 font-bold">452 páginas</span>
+                            <button class="text-emerald-400 hover:text-emerald-300">
+                                <i class="fas fa-eye mr-1"></i> Prévia
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Livro 3 -->
+                <div class="swiper-slide">
+                    <div class="book-card glass rounded-3xl p-6 h-full" onclick="openBookModal(2)">
+                        <div class="h-48 mb-6 rounded-2xl overflow-hidden relative">
+                            <img src="img/img4.jpg" 
+                                 alt="Spin Selling" 
+                                 class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="inline-block px-3 py-1 bg-blue-500/10 text-blue-400 rounded-full text-xs font-bold">Vendas</span>
+                            <h3 class="text-xl font-bold mt-3 mb-2">Spin Selling</h3>
+                            <p class="text-gray-400 text-sm mb-4">Neil Rackham • 4.6/5 ⭐</p>
+                            <p class="text-gray-300 text-sm line-clamp-2">Metodologia científica para vendas complexas que revolucionou o mercado.</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-emerald-400 font-bold">192 páginas</span>
+                            <button class="text-emerald-400 hover:text-emerald-300">
+                                <i class="fas fa-eye mr-1"></i> Prévia
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Livro 4 -->
+                <div class="swiper-slide">
+                    <div class="book-card glass rounded-3xl p-6 h-full" onclick="openBookModal(3)">
+                        <div class="h-48 mb-6 rounded-2xl overflow-hidden relative">
+                            <img src="img/img5.jpg" 
+                                 alt="A Arte da Sedução" 
+                                 class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="inline-block px-3 py-1 bg-red-500/10 text-red-400 rounded-full text-xs font-bold">Psicologia</span>
+                            <h3 class="text-xl font-bold mt-3 mb-2">A Arte da Sedução</h3>
+                            <p class="text-gray-400 text-sm mb-4">Robert Greene • 4.7/5 ⭐</p>
+                            <p class="text-gray-300 text-sm line-clamp-2">Domine as técnicas de persuasão e influência dos maiores sedutores da história.</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-emerald-400 font-bold">496 páginas</span>
+                            <button class="text-emerald-400 hover:text-emerald-300">
+                                <i class="fas fa-eye mr-1"></i> Prévia
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Livro 5 -->
+                <div class="swiper-slide">
+                    <div class="book-card glass rounded-3xl p-6 h-full" onclick="openBookModal(4)">
+                        <div class="h-48 mb-6 rounded-2xl overflow-hidden relative">
+                            <img src="img/img6.jpg" 
+                                 alt="O Investidor Inteligente" 
+                                 class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="inline-block px-3 py-1 bg-yellow-500/10 text-yellow-400 rounded-full text-xs font-bold">Investimentos</span>
+                            <h3 class="text-xl font-bold mt-3 mb-2">O Investidor Inteligente</h3>
+                            <p class="text-gray-400 text-sm mb-4">Benjamin Graham • 4.9/5 ⭐</p>
+                            <p class="text-gray-300 text-sm line-clamp-2">A bíblia do value investing recomendada por Warren Buffett.</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-emerald-400 font-bold">640 páginas</span>
+                            <button class="text-emerald-400 hover:text-emerald-300">
+                                <i class="fas fa-eye mr-1"></i> Prévia
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Livro 6 -->
+                <div class="swiper-slide">
+                    <div class="book-card glass rounded-3xl p-6 h-full" onclick="openBookModal(5)">
+                        <div class="h-48 mb-6 rounded-2xl overflow-hidden relative">
+                            <img src="img/im2.jpg" 
+                                 alt="Pai Rico Pai Pobre" 
+                                 class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="inline-block px-3 py-1 bg-emerald-500/10 text-emerald-400 rounded-full text-xs font-bold">Finanças</span>
+                            <h3 class="text-xl font-bold mt-3 mb-2">Pai Rico, Pai Pobre</h3>
+                            <p class="text-gray-400 text-sm mb-4">Robert Kiyosaki • 4.6/5 ⭐</p>
+                            <p class="text-gray-300 text-sm line-clamp-2">O livro que mudou a forma como milhões de pessoas pensam sobre dinheiro.</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-auto">
+                            <span class="text-emerald-400 font-bold">336 páginas</span>
+                            <button class="text-emerald-400 hover:text-emerald-300">
+                                <i class="fas fa-eye mr-1"></i> Prévia
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <!-- MODAL DE PRÉVIA DO LIVRO -->
+    <div id="bookModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
+        <div class="glass-emerald rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-8">
+                <div class="flex justify-between items-start mb-8">
+                    <div>
+                        <span id="modalCategory" class="inline-block px-3 py-1 rounded-full text-xs font-bold mb-3"></span>
+                        <h2 id="modalTitle" class="text-3xl font-bold mb-2"></h2>
+                        <div id="modalAuthor" class="text-gray-400 mb-4"></div>
+                    </div>
+                    <button onclick="closeBookModal()" class="text-gray-400 hover:text-white text-2xl">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-8">
+                    <div class="bg-gray-900 rounded-2xl overflow-hidden">
+                        <img id="modalCoverImage" 
+                             src="" 
+                             alt="" 
+                             class="w-full h-full object-cover">
+                    </div>
+                    
+                    <div>
+                        <div class="glass rounded-2xl p-6 mb-6">
+                            <h3 class="font-bold text-lg mb-4">📖 Detalhes do Livro</h3>
+                            <div class="space-y-3">
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">Páginas:</span>
+                                    <span id="modalPages" class="font-bold"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">Ano:</span>
+                                    <span id="modalYear" class="font-bold"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">Avaliação:</span>
+                                    <span id="modalRating" class="font-bold"></span>
+                                </div>
+                                <div class="flex justify-between">
+                                    <span class="text-gray-400">Nível:</span>
+                                    <span id="modalLevel" class="font-bold"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="glass rounded-2xl p-6">
+                            <h3 class="font-bold text-lg mb-4">🎯 O Que Você Vai Aprender</h3>
+                            <ul id="modalLearnings" class="space-y-2">
+                                <!-- Dinamicamente preenchido -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass rounded-2xl p-6 mb-8">
+                    <h3 class="font-bold text-lg mb-4">📝 Trecho Exclusivo (Prévia)</h3>
+                    <p id="modalPreview" class="text-gray-300 leading-relaxed italic"></p>
+                    <div class="mt-4 text-sm text-gray-400">
+                        <i class="fas fa-lock mr-2"></i>Este é apenas um trecho. Acesso completo disponível na biblioteca.
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="closeBookModal()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-8 rounded-2xl transition-all">
+                        Fechar Prévia
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BIBLIOTECA COMPLETA -->
+    <section class="py-16 px-4 bg-gradient-to-b from-transparent to-black/30">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-5xl font-jakarta font-bold mb-6">
+                    <span class="gradient-text">35 Livros</span> de Alta Estratégia
+                </h2>
+                <p class="text-gray-400 max-w-3xl mx-auto">
+                    Uma curadoria meticulosa dos livros que realmente ensinam a construir riqueza, influência e poder.
+                    Cada obra foi selecionada por seu impacto comprovado na vida dos maiores empreendedores do mundo.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <!-- Categorias da Biblioteca -->
+                <div class="glass-emerald rounded-2xl p-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="bg-emerald-500/20 p-3 rounded-xl">
+                            <img src="img/img8.jpg" 
+                                 alt="Finanças" 
+                                 class="w-12 h-12 object-cover rounded-lg">
+                        </div>
+                        <h3 class="text-xl font-bold">Finanças & Investimentos</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">12 livros especializados em criar, multiplicar e proteger capital.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm"><i class="fas fa-check text-emerald-400"></i> Pai Rico, Pai Pobre</li>
+                        <li class="flex items-center gap-2 text-sm"><i class="fas fa-check text-emerald-400"></i> Hábitos Atômicos</li>
+                        <li class="flex items-center gap-2 text-sm"><i class="fas fa-check text-emerald-400"></i> O Homem Mais Rico da Babilônia</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-emerald rounded-2xl p-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="bg-purple-500/20 p-3 rounded-xl">
+                            <img src="img/img7.jpg" 
+                                 alt="Poder" 
+                                 class="w-12 h-12 object-cover rounded-lg">
+                        </div>
+                        <h3 class="text-xl font-bold">Poder & Influência</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">9 livros sobre estratégias de persuasão e domínio psicológico.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm"><i class="fas fa-check text-purple-400"></i> As 48 Leis do Poder</li>
+                        <li class="flex items-center gap-2 text-sm"><i class="fas fa-check text-purple-400"></i> A Arte da Guerra</li>
+                        <li class="flex items-center gap-2 text-sm"><i class="fas fa-check text-purple-400"></i> O Príncipe</li>
+                    </ul>
+                </div>
+                
+                <div class="glass-emerald rounded-2xl p-6">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="bg-blue-500/20 p-3 rounded-xl">
+                            <img src="img/img9.jpg" 
+                                 alt="Negócios" 
+                                 class="w-12 h-12 object-cover rounded-lg">
+                        </div>
+                        <h3 class="text-xl font-bold">Negócios & Empreendedorismo</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4">14 livros com estratégias de negócios reais e escaláveis.</p>
+                    <ul class="space-y-2">
+                        <li class="flex items-center gap-2 text-sm"><i class="fas fa-check text-blue-400"></i> Startup Enxuta</li>
+                        <li class="flex items-center gap-2 text-sm"><i class="fas fa-check text-blue-400"></i> De Zero a Um</li>
+                        <li class="flex items-center gap-2 text-sm"><i class="fas fa-check text-blue-400"></i> Rápido e Devagar</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Grid de livros em miniatura -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <div class="rounded-lg overflow-hidden">
+                    <img src="img/img1.jpg" 
+                         alt="Mente Milionária" 
+                         class="w-full h-32 object-cover">
+                </div>
+                <div class="rounded-lg overflow-hidden">
+                    <img src="img/im2.jpg" 
+                         alt="Pai Rico Pai Pobre" 
+                         class="w-full h-32 object-cover">
+                </div>
+                <div class="rounded-lg overflow-hidden">
+                    <img src="img/img3.jpg" 
+                         alt="48 Leis do Poder" 
+                         class="w-full h-32 object-cover">
+                </div>
+                <div class="rounded-lg overflow-hidden">
+                    <img src="img/img4.jpg" 
+                         alt="Spin Selling" 
+                         class="w-full h-32 object-cover">
+                </div>
+                <div class="rounded-lg overflow-hidden">
+                    <img src="img/img5.jpg" 
+                         alt="Arte da Sedução" 
+                         class="w-full h-32 object-cover">
+                </div>
+                <div class="rounded-lg overflow-hidden">
+                    <img src="img/img6.jpg" 
+                         alt="Investidor Inteligente" 
+                         class="w-full h-32 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OFERTAS IRRECUSÁVEIS -->
+    <section id="ofertas" class="py-16 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-6">
+                    <i class="fas fa-gift text-emerald-400"></i>
+                    <span class="text-emerald-400 text-sm font-bold">OFERTA POR TEMPO LIMITADO</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-jakarta font-bold mb-6">Escolha Seu Nível de <span class="gradient-text">Transformação</span></h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- OPÇÃO 01: STARTER -->
+                <div class="glass p-8 rounded-3xl border-2 border-white/5 hover:border-emerald-500/30 transition-all duration-300">
+                    <div class="mb-8">
+                        <span class="text-sm font-bold text-gray-500 uppercase tracking-widest">Para Iniciantes</span>
+                        <h3 class="text-3xl font-black mt-2 mb-6">Combo 05 Pilares</h3>
+                        
+                        <div class="mb-8">
+                            <div class="flex items-center gap-2 mb-2">
+                                <i class="fas fa-book text-emerald-500"></i>
+                                <span class="font-bold">5 Livros Essenciais</span>
+                            </div>
+                            <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                <div class="h-full bg-emerald-500 w-1/5"></div>
+                            </div>
+                        </div>
+                        
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start gap-3 text-gray-300">
+                                <img src="img/im2.jpg" 
+                                     alt="Pai Rico Pai Pobre" 
+                                     class="w-12 h-16 object-cover rounded mt-1">
+                                <div>
+                                    <span class="font-medium">Pai Rico, Pai Pobre</span>
+                                    <p class="text-sm text-gray-400">Mude sua mentalidade financeira</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 text-gray-300">
+                                <img src="img/img1.jpg" 
+                                     alt="Mente Milionária" 
+                                     class="w-12 h-16 object-cover rounded mt-1">
+                                <div>
+                                    <span class="font-medium">Os Segredos da Mente Milionária</span>
+                                    <p class="text-sm text-gray-400">Padrões mentais dos ricos</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3 text-gray-300">
+                                <img src="img/img5.jpg" 
+                                     alt="Arte da Sedução" 
+                                     class="w-12 h-16 object-cover rounded mt-1">
+                                <div>
+                                    <span class="font-medium">A Arte da Sedução</span>
+                                    <p class="text-sm text-gray-400">Domine a influência social</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <div class="mb-8">
+                            <p class="text-gray-500 line-through text-sm italic">De R$ 47,00</p>
+                            <div class="flex items-end gap-2">
+                                <p class="text-5xl font-black">R$ 10,00</p>
+                                <span class="bg-emerald-500 text-black px-3 py-1 rounded-full text-sm font-bold">79% OFF</span>
+                            </div>
+                            <p class="text-gray-400 text-sm mt-2">Apenas R$ 2,00 por livro</p>
+                        </div>
+                        
+                        <a href="https://pay.cakto.com.br/SEU_ID_STARTER" 
+                           class="block w-full py-4 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-center border border-white/10 hover:border-white/20 transition-all group">
+                            <div class="flex items-center justify-center gap-2">
+                                <span>ESCOLHER ESSE COMBO</span>
+                                <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                            </div>
+                            <div class="text-xs text-gray-400 mt-2">Acesso imediato após o pagamento</div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- OPÇÃO 02: MASTER (VIP) -->
+                <div class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-[2.5rem] blur opacity-30 group-hover:opacity-70 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+                    <div class="relative bg-gradient-to-b from-gray-900 to-black p-8 rounded-[2.4rem] border-2 border-emerald-500/30">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-emerald-500 text-black px-6 py-1 font-black text-xs uppercase tracking-tighter rounded-full">
+                            ⭐ MAIS POPULAR
+                        </div>
+                        
+                        <div class="mb-8">
+                            <span class="text-sm font-bold text-emerald-400 uppercase tracking-widest">Acesso VIP Completo</span>
+                            <h3 class="text-3xl font-black mt-2 mb-2">Master Pack Elite</h3>
+                            <p class="text-emerald-400 font-bold text-sm mb-6">
+                                <i class="fas fa-crown mr-2"></i>35 Best-Sellers + Bônus Exclusivos
+                            </p>
+                            
+                            <div class="mb-8">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <i class="fas fa-book-open text-emerald-500"></i>
+                                    <span class="font-bold">Biblioteca Completa (35 Livros)</span>
+                                </div>
+                                <div class="h-2 bg-gray-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 w-full"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-3 gap-3 mb-6">
+                                <img src="img/img3.jpg" 
+                                     alt="48 Leis do Poder" 
+                                     class="w-full h-24 object-cover rounded-lg">
+                                <img src="img/img1.jpg" 
+                                     alt="Mente Milionária" 
+                                     class="w-full h-24 object-cover rounded-lg">
+                                <img src="img/img5.jpg" 
+                                     alt="Arte da Sedução" 
+                                     class="w-full h-24 object-cover rounded-lg">
+                            </div>
+                            
+                            <ul class="space-y-4 mb-6">
+                                <li class="flex items-start gap-3 text-white">
+                                    <i class="fas fa-plus-circle text-emerald-500 mt-1"></i>
+                                    <div>
+                                        <span class="font-bold">Todos os 5 livros do Combo Starter</span>
+                                        <p class="text-sm text-gray-300">Base sólida de conhecimento</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3 text-gray-300">
+                                    <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                                    <div>
+                                        <span class="font-medium">48 Leis do Poder (Robert Greene)</span>
+                                        <p class="text-sm text-gray-400">Manual completo de estratégia</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3 text-gray-300">
+                                    <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                                    <div>
+                                        <span class="font-medium">PNL - A Nova Tecnologia do Sucesso</span>
+                                        <p class="text-sm text-gray-400">Reprogramação mental avançada</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3 text-emerald-400">
+                                    <i class="fas fa-gift mt-1"></i>
+                                    <div>
+                                        <span class="font-bold">+25 LIVROS DE ALTA ESTRATÉGIA</span>
+                                        <p class="text-sm">Negociação, psicologia, marketing e mais</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            
+                            <div class="glass rounded-2xl p-4 mb-6">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <i class="fas fa-gem text-emerald-400"></i>
+                                    <span class="font-bold">Bônus Exclusivos (R$ 297,00 de valor)</span>
+                                </div>
+                                <ul class="text-sm space-y-2">
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Curso: Leitura Dinâmica (4h)</li>
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Planner de Metas Milionárias</li>
+                                    <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Comunidade Privada VIP</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="mb-8">
+                                <p class="text-gray-500 line-through text-sm italic uppercase">De R$ 147,00 por apenas:</p>
+                                <div class="flex items-end gap-3 mb-2">
+                                    <p class="text-5xl font-black">R$ 30,00</p>
+                                    <div class="flex flex-col">
+                                        <span class="bg-gradient-to-r from-emerald-500 to-emerald-400 text-black px-3 py-1 rounded-full text-sm font-bold">70% OFF</span>
+                                        <span class="text-xs text-gray-400 mt-1">Economize R$ 117,00</span>
+                                    </div>
+                                </div>
+                                <p class="text-gray-400 text-sm">Apenas R$ 0,86 por livro + bônus</p>
+                            </div>
+                            
+                            <a href="https://pay.cakto.com.br/SEU_ID_MASTER" 
+                               class="block w-full py-5 rounded-2xl bg-gradient-to-r from-emerald-500 to-emerald-600 text-white font-black text-center text-lg hover:from-emerald-600 hover:to-emerald-700 hover:scale-[1.02] transition-all shadow-2xl shadow-emerald-500/20 group">
+                                <div class="flex items-center justify-center gap-3">
+                                    <i class="fas fa-lock"></i>
+                                    <span>QUERO A BIBLIOTECA COMPLETA AGORA</span>
+                                    <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+                                </div>
+                            </a>
+                            
+                            <div class="grid grid-cols-3 gap-3 mt-6 text-center">
+                                <div class="text-xs">
+                                    <div class="text-emerald-400"><i class="fas fa-shield-alt"></i></div>
+                                    <div class="text-gray-400">Pagamento Seguro</div>
+                                </div>
+                                <div class="text-xs">
+                                    <div class="text-emerald-400"><i class="fas fa-bolt"></i></div>
+                                    <div class="text-gray-400">Acesso Imediato</div>
+                                </div>
+                                <div class="text-xs">
+                                    <div class="text-emerald-400"><i class="fas fa-infinity"></i></div>
+                                    <div class="text-gray-400">Acesso Vitalício</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-12">
+                <div class="inline-flex items-center gap-2 text-sm text-gray-400">
+                    <i class="fas fa-sync-alt"></i>
+                    <span>Você pode mudar de plano a qualquer momento</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section class="py-16 px-4 glass">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-5xl font-jakarta font-bold mb-6">
+                    O Que Nossos <span class="gradient-text">Membros</span> Dizem
+                </h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-emerald rounded-2xl p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-emerald-500/20 rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" 
+                                 alt="Marcos" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <div class="font-bold">Marcos F.</div>
+                            <div class="text-emerald-400 text-sm">Empreendedor</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic mb-4">"Em 6 meses apliquei as estratégias do '48 Leis do Poder' e fechei meu maior contrato. A biblioteca paga a si mesma."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="glass-emerald rounded-2xl p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-purple-500/20 rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" 
+                                 alt="Camila" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <div class="font-bold">Camila R.</div>
+                            <div class="text-purple-400 text-sm">Consultora</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic mb-4">"Os livros de psicologia me deram uma vantagem enorme nas negociações. Hoje cobro 3x mais pelo mesmo serviço."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <div class="glass-emerald rounded-2xl p-6">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="https://randomuser.me/api/portraits/men/67.jpg" 
+                                 alt="Thiago" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <div class="font-bold">Thiago R.</div>
+                            <div class="text-blue-400 text-sm">Investidor</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic mb-4">"O 'Investidor Inteligente' me salvou de perder dinheiro na bolsa. Já recuperei o investimento na biblioteca 20x."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RISCO ZERO -->
+    <section class="py-16 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-emerald rounded-3xl p-8 md:p-12 text-center">
+                <div class="inline-flex items-center justify-center w-20 h-20 bg-emerald-500/20 rounded-2xl mb-6">
+                    <i class="fas fa-shield-heart text-3xl text-emerald-400"></i>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-black mb-6 uppercase">
+                    Garantia Incondicional de <span class="gradient-text">7 Dias</span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
+                    Teste toda a biblioteca por 7 dias completos. Se por qualquer motivo você não achar que vale pelo menos 10x o valor investido, 
+                    devolvemos 100% do seu dinheiro. Sem perguntas, sem burocracia.
+                </p>
+                <div class="grid md:grid-cols-3 gap-6 mt-12">
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-emerald-400 mb-2">7</div>
+                        <div class="text-gray-300">Dias de Garantia</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-emerald-400 mb-2">100%</div>
+                        <div class="text-gray-300">Devolução do Valor</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-black text-emerald-400 mb-2">0</div>
+                        <div class="text-gray-300">Perguntas ou Burocracia</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERGUNTAS FREQUENTES -->
+    <section id="faq-section" class="py-16 px-4">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-jakarta font-bold text-center mb-12">
+                Perguntas <span class="gradient-text">Frequentes</span>
+            </h2>
+            
+            <div class="space-y-4">
+                <div class="glass rounded-2xl p-6">
+                    <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(0)">
+                        <span class="font-bold text-lg">Como recebo acesso aos livros?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="mt-4 text-gray-300 hidden">
+                        Imediatamente após a confirmação do pagamento, você receberá um e-mail com acesso à plataforma exclusiva. Todos os livros estão disponíveis em formato PDF, EPUB e MOBI para download imediato.
+                    </div>
+                </div>
+                
+                <div class="glass rounded-2xl p-6">
+                    <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(1)">
+                        <span class="font-bold text-lg">Os livros são completos ou apenas resumos?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="mt-4 text-gray-300 hidden">
+                        São as obras COMPLETAS, idênticas às versões físicas. Nada de resumos ou versões condensadas. Você recebe o livro inteiro, com todas as páginas e conteúdo original.
+                    </div>
+                </div>
+                
+                <div class="glass rounded-2xl p-6">
+                    <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(2)">
+                        <span class="font-bold text-lg">Posso acessar no celular?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="mt-4 text-gray-300 hidden">
+                        Sim! Todos os formatos são compatíveis com smartphones, tablets, computadores e e-readers (Kindle, Kobo, etc). Acesse de qualquer dispositivo, a qualquer hora.
+                    </div>
+                </div>
+                
+                <div class="glass rounded-2xl p-6">
+                    <button class="flex justify-between items-center w-full text-left" onclick="toggleFAQ(3)">
+                        <span class="font-bold text-lg">E se eu não gostar do conteúdo?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="mt-4 text-gray-300 hidden">
+                        Você tem 7 dias para solicitar reembolso total, sem perguntas. Basta enviar um e-mail para suporte@mentegoat.com que devolvemos 100% do valor. O conhecimento fica com você.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-white/10">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div>
+                    <div class="text-2xl font-black mb-2">
+                        <span class="gradient-text">MENTEGOAT</span>
+                    </div>
+                    <p class="text-gray-500 text-sm">Biblioteca de Elite para Conquista Financeira</p>
+                </div>
+                
+                <div class="flex gap-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-8 pt-8 text-center">
+                <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500 mb-4">
+                    <a href="#" class="hover:text-emerald-400">Termos de Uso</a>
+                    <a href="#" class="hover:text-emerald-400">Política de Privacidade</a>
+                    <a href="#" class="hover:text-emerald-400">Suporte</a>
+                    <a href="#" class="hover:text-emerald-400">Garantia</a>
+                </div>
+                <p class="text-xs text-gray-600">
+                    © 2026 Mentegoat. Todos os direitos reservados. Este site não é afiliado ao Facebook ou a qualquer entidade do Facebook.
+                    Depois que você sair do Facebook, a responsabilidade não é deles e sim do nosso site. Fazemos todos os esforços para indicar
+                    claramente e mostrar todas as provas do produto e usamos resultados reais.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        // Dados dos livros
+        const books = [
+            {
+                title: "Os Segredos da Mente Milionária",
+                author: "T. Harv Eker • 4.7/5 ⭐",
+                category: "Finanças",
+                categoryColor: "bg-emerald-500/10 text-emerald-400",
+                cover: "img/img1.jpg",
+                pages: "112 páginas",
+                year: "2005",
+                rating: "4.7/5 (12.543 avaliações)",
+                level: "Iniciante - Intermediário",
+                learnings: [
+                    "Identificar e reprogramar seu 'modelo de dinheiro'",
+                    "As 17 diferenças fundamentais na mentalidade rica vs pobre",
+                    "Estratégias práticas para aumentar seu patrimônio líquido",
+                    "Como os ricos pensam sobre investimentos e oportunidades"
+                ],
+                preview: "A maioria das pessoas não tem consciência de que possui um modelo de dinheiro, mas ele está lá, dirigindo suas decisões financeiras. O seu modelo de dinheiro pode estar programando você para ficar na média, ou pior, para a pobreza. A boa notícia é que você pode mudá-lo..."
+            },
+            {
+                title: "As 48 Leis do Poder",
+                author: "Robert Greene • 4.8/5 ⭐",
+                category: "Poder",
+                categoryColor: "bg-purple-500/10 text-purple-400",
+                cover: "img/img3.jpg",
+                pages: "112 páginas",
+                year: "1998",
+                rating: "4.8/5 (28.901 avaliações)",
+                level: "Avançado",
+                learnings: [
+                    "Como nunca ofuscar seus superiores",
+                    "A arte de usar planos indiretos para conquistar objetivos",
+                    "Proteger sua reputação a qualquer custo",
+                    "Quando demonstrar força e quando ser flexível"
+                ],
+                preview: "O poder é um jogo social. Para vencer, você deve entender as regras. A primeira lei: nunca ofusque o mestre. Faça com que seus superiores pareçam mais brilhantes do que são, e você alcançará as alturas do poder..."
+            },
+            {
+                title: "Spin Selling",
+                author: "Neil Rackham • 4.6/5 ⭐",
+                category: "Vendas",
+                categoryColor: "bg-blue-500/10 text-blue-400",
+                cover: "img/img4.jpg",
+                pages: "218 páginas",
+                year: "1988",
+                rating: "4.6/5 (8.742 avaliações)",
+                level: "Intermediário",
+                learnings: [
+                    "Metodologia SPIN (Situação, Problema, Implicação, Necessidade)",
+                    "Como vender soluções em vez de produtos",
+                    "Técnicas para lidar com objeções complexas",
+                    "Estratégias para vendas de alto valor"
+                ],
+                preview: "Vendedores bem-sucedidos não vendem produtos - eles vendem soluções para problemas. A chave está em fazer as perguntas certas na sequência correta. Esta é a essência do método SPIN..."
+            },
+            {
+                title: "A Arte da Sedução",
+                author: "Robert Greene • 4.7/5 ⭐",
+                category: "Psicologia",
+                categoryColor: "bg-red-500/10 text-red-400",
+                cover: "img/img5.jpg",
+                pages: "134 páginas",
+                year: "2001",
+                rating: "4.7/5 (15.328 avaliações)",
+                level: "Avançado",
+                learnings: [
+                    "Os 9 tipos de sedutores e como identificar o seu",
+                    "Como criar fascínio e mistério",
+                    "Técnicas para ler e influenciar pessoas",
+                    "A arte da fuga estratégica"
+                ],
+                preview: "A sedução não é sobre aparência física, mas sobre psicologia. O verdadeiro sedutor entende os desejos mais profundos de sua vítima e sabe como despertá-los. Esta é uma arte que pode ser aprendida e dominada..."
+            },
+            {
+                title: "O Investidor Inteligente",
+                author: "Benjamin Graham • 4.9/5 ⭐",
+                category: "Investimentos",
+                categoryColor: "bg-yellow-500/10 text-yellow-400",
+                cover: "img/img6.jpg",
+                pages: "736 páginas",
+                year: "1949",
+                rating: "4.9/5 (42.156 avaliações)",
+                level: "Intermediário - Avançado",
+                learnings: [
+                    "Princípios do value investing",
+                    "Como analisar ações com margem de segurança",
+                    "Diferença entre investimento e especulação",
+                    "Estratégias para mercados voláteis"
+                ],
+                preview: "O investimento mais inteligente é aquele tratado como um negócio. Isso requer análise cuidadosa, margem de segurança e paciência. O mercado no curto prazo é uma máquina de votação; no longo prazo, uma máquina de pesagem..."
+            },
+            {
+                title: "Pai Rico, Pai Pobre",
+                author: "Robert Kiyosaki • 4.6/5 ⭐",
+                category: "Finanças",
+                categoryColor: "bg-emerald-500/10 text-emerald-400",
+                cover: "img/im2.jpg",
+                pages: "152 páginas",
+                year: "1997",
+                rating: "4.6/5 (58.921 avaliações)",
+                level: "Iniciante",
+                learnings: [
+                    "Diferença entre ativos e passivos",
+                    "Como fazer o dinheiro trabalhar para você",
+                    "Mentalidade do empreendedor vs empregado",
+                    "Educação financeira básica essencial"
+                ],
+                preview: "Meu pai rico costumava dizer: 'Os pobres e a classe média trabalham pelo dinheiro. Os ricos fazem o dinheiro trabalhar para eles.' Esta simples frase mudou completamente minha perspectiva sobre riqueza..."
+            }
+        ];
+        
+        // Timer de 10 minutos
+        function startTimer(duration, display) {
+            let timer = duration, minutes, seconds;
+            const interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.textContent = minutes + ":" + seconds;
+                
+                // Atualizar barra de progresso
+                const progress = ((duration - timer) / duration) * 100;
+                document.getElementById('progress-bar').style.width = progress + '%';
+                
+                if (--timer < 0) {
+                    clearInterval(interval);
+                    display.textContent = "00:00";
+                    document.querySelector('.bg-gradient-to-r').classList.add('animate-pulse');
+                }
+            }, 1000);
+        }
+        
+        // Inicializar Swiper
+        const swiper = new Swiper('.booksSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+                1280: { slidesPerView: 4 }
+            }
+        });
+        
+        // Funções do modal
+        function openBookModal(index) {
+            const book = books[index];
+            const modal = document.getElementById('bookModal');
+            const learningsList = document.getElementById('modalLearnings');
+            
+            // Preencher dados
+            document.getElementById('modalTitle').textContent = book.title;
+            document.getElementById('modalAuthor').textContent = book.author;
+            document.getElementById('modalCategory').textContent = book.category;
+            document.getElementById('modalCategory').className = `inline-block px-3 py-1 rounded-full text-xs font-bold mb-3 ${book.categoryColor}`;
+            document.getElementById('modalPages').textContent = book.pages;
+            document.getElementById('modalYear').textContent = book.year;
+            document.getElementById('modalRating').textContent = book.rating;
+            document.getElementById('modalLevel').textContent = book.level;
+            document.getElementById('modalPreview').textContent = book.preview;
+            
+            // Atualizar imagem do modal
+            const modalImage = document.getElementById('modalCoverImage');
+            if (modalImage) {
+                modalImage.src = book.cover;
+                modalImage.alt = book.title;
+            }
+            
+            // Limpar e preencher aprendizados
+            learningsList.innerHTML = '';
+            book.learnings.forEach(learning => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start gap-3';
+                li.innerHTML = `<i class="fas fa-check text-emerald-400 mt-1"></i><span>${learning}</span>`;
+                learningsList.appendChild(li);
+            });
+            
+            // Mostrar modal
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.classList.add('modal-open');
+        }
+        
+        function closeBookModal() {
+            const modal = document.getElementById('bookModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.classList.remove('modal-open');
+        }
+        
+        // Fechar modal ao clicar fora
+        document.getElementById('bookModal').addEventListener('click', function(e) {
+            if (e.target === this) closeBookModal();
+        });
+        
+        // FAQ toggle
+        function toggleFAQ(index) {
+            const items = document.querySelectorAll('#faq-section .glass');
+            const content = items[index].querySelector('.hidden');
+            const icon = items[index].querySelector('.fa-chevron-down');
+            
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+        
+        // Inicializar quando a página carregar
+        window.onload = function() {
+            // Iniciar timer
+            const tenMinutes = 60 * 10;
+            const display = document.querySelector('#timer');
+            startTimer(tenMinutes, display);
+            
+            // Adicionar classe para animar setas FAQ
+            document.querySelectorAll('#faq-section button').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.querySelector('.fa-chevron-down').classList.toggle('rotate-180');
+                });
+            });
+            
+            // Smooth scroll para ofertas
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
+            });
+        };
+    </script>
+    <script>
+    // Notificações falsas de compra
+    let notificationCount = 0;
+    let notificationInterval;
+    
+    // Dados para notificações falsas
+    const fakeBuyers = [
+        { name: "Carlos S.", city: "São Paulo", time: "2 min atrás" },
+        { name: "Amanda R.", city: "Rio de Janeiro", time: "3 min atrás" },
+        { name: "Roberto L.", city: "Belo Horizonte", time: "4 min atrás" },
+        { name: "Fernanda M.", city: "Porto Alegre", time: "5 min atrás" },
+        { name: "Ricardo P.", city: "Brasília", time: "6 min atrás" },
+        { name: "Juliana C.", city: "Curitiba", time: "7 min atrás" },
+        { name: "Marcelo T.", city: "Fortaleza", time: "8 min atrás" },
+        { name: "Patrícia G.", city: "Salvador", time: "9 min atrás" },
+        { name: "Thiago A.", city: "Recife", time: "10 min atrás" }
+    ];
+    
+    const fakePackages = [
+        "acabou de adquirir o Combo 5 Pilares",
+        "comprou o Master Pack VIP",
+        "acessou a Biblioteca Completa",
+        "garantiu o desconto de 70%",
+        "adquiriu acesso vitalício"
+    ];
+    
+    const fakeAvatars = [
+        "https://randomuser.me/api/portraits/men/1.jpg",
+        "https://randomuser.me/api/portraits/women/2.jpg",
+        "https://randomuser.me/api/portraits/men/3.jpg",
+        "https://randomuser.me/api/portraits/women/4.jpg",
+        "https://randomuser.me/api/portraits/men/5.jpg",
+        "https://randomuser.me/api/portraits/women/6.jpg",
+        "https://randomuser.me/api/portraits/men/7.jpg",
+        "https://randomuser.me/api/portraits/women/8.jpg"
+    ];
+    
+    // Função para criar uma notificação
+    function createNotification() {
+        notificationCount++;
+        
+        // Atualizar contador
+        document.getElementById('notificationCount').textContent = notificationCount;
+        document.getElementById('notificationCounter').style.display = 'flex';
+        
+        // Selecionar dados aleatórios
+        const buyer = fakeBuyers[Math.floor(Math.random() * fakeBuyers.length)];
+        const package = fakePackages[Math.floor(Math.random() * fakePackages.length)];
+        const avatar = fakeAvatars[Math.floor(Math.random() * fakeAvatars.length)];
+        
+        // Criar elemento de notificação
+        const notification = document.createElement('div');
+        notification.className = 'notification';
+        notification.innerHTML = `
+            <div class="notification-header">
+                <div class="notification-avatar">
+                    <img src="${avatar}" alt="${buyer.name}">
+                </div>
+                <div class="notification-info">
+                    <h4>${buyer.name}</h4>
+                    <p>${buyer.city}</p>
+                </div>
+                <div class="notification-badge">NEW</div>
+            </div>
+            <div class="notification-content">
+                <strong>${buyer.name}</strong> ${package} da Mentegoat!
+            </div>
+            <div class="notification-time">
+                <i class="fas fa-clock"></i>
+                <span>${buyer.time}</span>
+            </div>
+        `;
+        
+        // Adicionar ao container
+        const container = document.getElementById('notificationContainer');
+        container.appendChild(notification);
+        
+        // Trigger para animação
+        setTimeout(() => {
+            notification.classList.add('show');
+        }, 10);
+        
+        // Remover após 8 segundos
+        setTimeout(() => {
+            notification.remove();
+        }, 8000);
+    }
+    
+    // Função para alternar visibilidade das notificações
+    function toggleNotifications() {
+        const container = document.getElementById('notificationContainer');
+        const counter = document.getElementById('notificationCounter');
+        
+        if (container.style.display === 'none' || container.style.display === '') {
+            container.style.display = 'flex';
+            counter.style.display = 'none';
+            notificationCount = 0;
+        } else {
+            container.style.display = 'none';
+            counter.style.display = 'flex';
+        }
+    }
+    
+    // Função para iniciar notificações
+    function startNotifications() {
+        // Primeira notificação após 30 segundos
+        setTimeout(() => {
+            createNotification();
+        }, 30000);
+        
+        // Configurar intervalo de 2 minutos (120000 ms)
+        notificationInterval = setInterval(() => {
+            // Criar entre 1 e 3 notificações a cada intervalo
+            const numNotifications = Math.floor(Math.random() * 3) + 1;
+            for (let i = 0; i < numNotifications; i++) {
+                // Espaçar as notificações em 3 segundos
+                setTimeout(() => {
+                    createNotification();
+                }, i * 3000);
+            }
+        }, 120000); // 2 minutos
+    }
+    
+    // Iniciar notificações quando a página carregar
+    window.addEventListener('DOMContentLoaded', () => {
+        startNotifications();
+    });
+    
+    // Parar notificações quando a página perder foco (para não incomodar)
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            clearInterval(notificationInterval);
+        } else {
+            startNotifications();
+        }
+    });
+</script>
+    <!-- Container de Notificações -->
+<div class="notification-container" id="notificationContainer"></div>
+
+<!-- Contador de Notificações -->
+<div class="notification-counter" id="notificationCounter" onclick="toggleNotifications()" style="display: none;">
+    <span id="notificationCount">0</span>
+</div>
+</body>
+</html>
