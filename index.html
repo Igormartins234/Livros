@@ -131,158 +131,165 @@
         .swiper-slide img:hover {
             transform: scale(1.05);
         }
-    .notification-container {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        z-index: 1000;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        max-width: 300px;
-    }
-    
-    .notification {
-        background: linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(5, 150, 105, 0.95) 100%);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 15px;
-        padding: 15px;
-        box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
-        transform: translateX(100%);
-        opacity: 0;
-        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        animation: slideIn 0.5s forwards, fadeOut 0.5s 7s forwards;
-    }
-    
-    .notification.show {
-        transform: translateX(0);
-        opacity: 1;
-    }
-    
-    @keyframes slideIn {
-        from {
+        
+        /* Notificações de Compra - 4 segundos */
+        .notification-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 300px;
+        }
+        
+        .notification {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(5, 150, 105, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 12px;
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
             transform: translateX(100%);
             opacity: 0;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: slideIn 0.3s forwards, fadeOut 0.3s 3.7s forwards; /* 4 segundos total */
         }
-        to {
+        
+        .notification.show {
             transform: translateX(0);
             opacity: 1;
         }
-    }
-    
-    @keyframes fadeOut {
-        from {
-            transform: translateX(0);
-            opacity: 1;
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
+        
+        @keyframes fadeOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
         }
-    }
-    
-    .notification-header {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        margin-bottom: 8px;
-    }
-    
-    .notification-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        overflow: hidden;
-        border: 2px solid rgba(255, 255, 255, 0.3);
-    }
-    
-    .notification-avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    
-    .notification-info h4 {
-        font-size: 13px;
-        font-weight: 700;
-        margin: 0;
-    }
-    
-    .notification-info p {
-        font-size: 11px;
-        opacity: 0.9;
-        margin: 0;
-    }
-    
-    .notification-content {
-        font-size: 13px;
-        margin: 5px 0;
-        line-height: 1.4;
-    }
-    
-    .notification-time {
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        font-size: 11px;
-        opacity: 0.8;
-        margin-top: 8px;
-    }
-    
-    .notification-time i {
-        font-size: 10px;
-    }
-    
-    .notification-badge {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-        background: #ef4444;
-        color: white;
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 10px;
-        font-weight: bold;
-        animation: pulse 1.5s infinite;
-    }
-    
-    .notification-counter {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background: linear-gradient(135deg, #ef4444, #dc2626);
-        color: white;
-        border-radius: 50%;
-        width: 24px;
-        height: 24px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 12px;
-        font-weight: bold;
-        z-index: 1001;
-        cursor: pointer;
-        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
-        animation: bounce 2s infinite;
-    }
-    
-    @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-        40% {transform: translateY(-5px);}
-        60% {transform: translateY(-3px);}
-    }
-    
-    @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.1); }
-        100% { transform: scale(1); }
-    }
+        
+        .notification-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        
+        .notification-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .notification-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .notification-info h4 {
+            font-size: 12px;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .notification-info p {
+            font-size: 10px;
+            opacity: 0.9;
+            margin: 0;
+        }
+        
+        .notification-content {
+            font-size: 12px;
+            margin: 4px 0;
+            line-height: 1.3;
+        }
+        
+        .notification-time {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            opacity: 0.8;
+            margin-top: 6px;
+        }
+        
+        .notification-time i {
+            font-size: 9px;
+        }
+        
+        .notification-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .notification-counter {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1001;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-5px);}
+            60% {transform: translateY(-3px);}
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
 
+        /* Modal lista completa */
+        #fullListModal {
+            z-index: 101;
+        }
     </style>
 </head>
 <body class="selection:bg-emerald-500 selection:text-white">
@@ -688,6 +695,36 @@
                     <span class="text-emerald-400 text-sm font-bold">OFERTA POR TEMPO LIMITADO</span>
                 </div>
                 <h2 class="text-3xl md:text-5xl font-jakarta font-bold mb-6">Escolha Seu Nível de <span class="gradient-text">Transformação</span></h2>
+                
+                <!-- Nova seção de curadoria estratégica -->
+                <div class="glass-emerald rounded-2xl p-6 mb-8 max-w-3xl mx-auto">
+                    <div class="flex items-start gap-4">
+                        <div class="bg-emerald-500/20 p-3 rounded-xl">
+                            <i class="fas fa-brain text-emerald-400 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold mb-3">🎯 Curadoria Estratégica Exclusiva</h3>
+                            <p class="text-gray-300 mb-3">
+                                Para montar o <strong>Pack de 35 Livros</strong>, analisei sua biblioteca e selecionei os títulos que possuem mais "nome", 
+                                autores famosos e que são os <strong>favoritos dos influenciadores de finanças e marketing</strong>.
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-check text-emerald-400"></i>
+                                    <span>Dinheiro & Negócios (12 livros)</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-check text-emerald-400"></i>
+                                    <span>Persuasão & Psicologia (9 livros)</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <i class="fas fa-check text-emerald-400"></i>
+                                    <span>Vendas & Marketing (14 livros)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -708,35 +745,38 @@
                             </div>
                         </div>
                         
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-start gap-3 text-gray-300">
-                                <img src="img/im2.jpg" 
-                                     alt="Pai Rico Pai Pobre" 
-                                     class="w-12 h-16 object-cover rounded mt-1">
-                                <div>
-                                    <span class="font-medium">Pai Rico, Pai Pobre</span>
-                                    <p class="text-sm text-gray-400">Mude sua mentalidade financeira</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3 text-gray-300">
-                                <img src="img/img1.jpg" 
-                                     alt="Mente Milionária" 
-                                     class="w-12 h-16 object-cover rounded mt-1">
-                                <div>
-                                    <span class="font-medium">Os Segredos da Mente Milionária</span>
-                                    <p class="text-sm text-gray-400">Padrões mentais dos ricos</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3 text-gray-300">
-                                <img src="img/img5.jpg" 
-                                     alt="Arte da Sedução" 
-                                     class="w-12 h-16 object-cover rounded mt-1">
-                                <div>
-                                    <span class="font-medium">A Arte da Sedução</span>
-                                    <p class="text-sm text-gray-400">Domine a influência social</p>
-                                </div>
-                            </li>
-                        </ul>
+                        <div class="mb-6">
+                            <p class="text-gray-400 text-sm mb-3 font-bold">🎯 Os Top 5:</p>
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-start gap-3 text-gray-300">
+                                    <img src="img/im2.jpg" 
+                                         alt="Pai Rico Pai Pobre" 
+                                         class="w-12 h-16 object-cover rounded mt-1">
+                                    <div>
+                                        <span class="font-medium">Pai Rico, Pai Pobre</span>
+                                        <p class="text-sm text-gray-400">O maior clássico de finanças</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3 text-gray-300">
+                                    <img src="img/img1.jpg" 
+                                         alt="Mente Milionária" 
+                                         class="w-12 h-16 object-cover rounded mt-1">
+                                    <div>
+                                        <span class="font-medium">Os Segredos da Mente Milionária</span>
+                                        <p class="text-sm text-gray-400">O favorito do mindset</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-3 text-gray-300">
+                                    <img src="img/img5.jpg" 
+                                         alt="Arte da Sedução" 
+                                         class="w-12 h-16 object-cover rounded mt-1">
+                                    <div>
+                                        <span class="font-medium">A Arte da Sedução</span>
+                                        <p class="text-sm text-gray-400">Extremamente viral no TikTok/Reels</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                     
                     <div>
@@ -749,7 +789,7 @@
                             <p class="text-gray-400 text-sm mt-2">Apenas R$ 2,00 por livro</p>
                         </div>
                         
-                        <a href="https://pay.cakto.com.br/SEU_ID_STARTER" 
+                        <a href="https://pay.cakto.com.br/3e9vhh2_708575" 
                            class="block w-full py-4 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-bold text-center border border-white/10 hover:border-white/20 transition-all group">
                             <div class="flex items-center justify-center gap-2">
                                 <span>ESCOLHER ESSE COMBO</span>
@@ -767,10 +807,13 @@
                         <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-emerald-500 text-black px-6 py-1 font-black text-xs uppercase tracking-tighter rounded-full">
                             ⭐ MAIS POPULAR
                         </div>
+                        <div class="absolute -top-3 left-6 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-1 font-black text-[10px] uppercase tracking-tighter rounded-full">
+                            🎯 CURADORIA ESTRATÉGICA
+                        </div>
                         
                         <div class="mb-8">
                             <span class="text-sm font-bold text-emerald-400 uppercase tracking-widest">Acesso VIP Completo</span>
-                            <h3 class="text-3xl font-black mt-2 mb-2">Master Pack Elite</h3>
+                            <h3 class="text-3xl font-black mt-2 mb-2">Pack de 35 Livros (Curadoria Premium)</h3>
                             <p class="text-emerald-400 font-bold text-sm mb-6">
                                 <i class="fas fa-crown mr-2"></i>35 Best-Sellers + Bônus Exclusivos
                             </p>
@@ -797,61 +840,81 @@
                                      class="w-full h-24 object-cover rounded-lg">
                             </div>
                             
-                            <ul class="space-y-4 mb-6">
-                                <li class="flex items-start gap-3 text-white">
-                                    <i class="fas fa-plus-circle text-emerald-500 mt-1"></i>
+                            <ul class="space-y-3 mb-6">
+                                <li class="flex items-center gap-3 text-sm font-bold text-white">
+                                    <i class="fas fa-star text-emerald-500"></i> 
+                                    <strong>Os 5 do Starter (Pai Rico, Sedução, etc)</strong>
+                                </li>
+                                <li class="flex items-start gap-3 text-sm text-gray-300">
+                                    <i class="fas fa-plus text-emerald-500 mt-1"></i>
                                     <div>
-                                        <span class="font-bold">Todos os 5 livros do Combo Starter</span>
-                                        <p class="text-sm text-gray-300">Base sólida de conhecimento</p>
+                                        <span class="font-bold">Do Mil ao Milhão (Thiago Nigro)</span>
+                                        <p class="text-xs text-gray-400">Muito forte no Brasil</p>
                                     </div>
                                 </li>
-                                <li class="flex items-start gap-3 text-gray-300">
-                                    <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                                <li class="flex items-start gap-3 text-sm text-gray-300">
+                                    <i class="fas fa-check text-emerald-500 mt-1"></i>
                                     <div>
-                                        <span class="font-medium">48 Leis do Poder (Robert Greene)</span>
-                                        <p class="text-sm text-gray-400">Manual completo de estratégia</p>
+                                        <span class="font-medium">O Lobo de Wall Street</span>
+                                        <p class="text-xs text-gray-400">Hype de vendas e ambição</p>
                                     </div>
                                 </li>
-                                <li class="flex items-start gap-3 text-gray-300">
-                                    <i class="fas fa-check-circle text-emerald-500 mt-1"></i>
+                                <li class="flex items-start gap-3 text-sm text-gray-300">
+                                    <i class="fas fa-check text-emerald-500 mt-1"></i>
                                     <div>
-                                        <span class="font-medium">PNL - A Nova Tecnologia do Sucesso</span>
-                                        <p class="text-sm text-gray-400">Reprogramação mental avançada</p>
+                                        <span class="font-medium">Trabalhe 4 Horas por Semana</span>
+                                        <p class="text-xs text-gray-400">Sonho de liberdade geográfica</p>
                                     </div>
                                 </li>
-                                <li class="flex items-start gap-3 text-emerald-400">
-                                    <i class="fas fa-gift mt-1"></i>
+                                <li class="flex items-start gap-3 text-sm text-gray-300">
+                                    <i class="fas fa-check text-emerald-500 mt-1"></i>
                                     <div>
-                                        <span class="font-bold">+25 LIVROS DE ALTA ESTRATÉGIA</span>
-                                        <p class="text-sm">Negociação, psicologia, marketing e mais</p>
+                                        <span class="font-medium">Como Convencer em 90 Segundos</span>
+                                        <p class="text-xs text-gray-400">Persuasão rápida e eficaz</p>
                                     </div>
+                                </li>
+                                <li class="flex items-start gap-3 text-sm text-gray-300">
+                                    <i class="fas fa-check text-emerald-500 mt-1"></i>
+                                    <div>
+                                        <span class="font-bold">Ponto de Inflexão (Flávio Augusto)</span>
+                                        <p class="text-xs text-gray-400">Referência nacional de empreendedorismo</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-center gap-3 text-sm font-bold text-emerald-400 mt-4">
+                                    <i class="fas fa-crown"></i>
+                                    <span>+ 25 Best-Sellers de Elite (Hill, Cialdini, Kotler, Greene...)</span>
                                 </li>
                             </ul>
                             
-                            <div class="glass rounded-2xl p-4 mb-6">
-                                <div class="flex items-center gap-3 mb-2">
-                                    <i class="fas fa-gem text-emerald-400"></i>
-                                    <span class="font-bold">Bônus Exclusivos (R$ 297,00 de valor)</span>
-                                </div>
-                                <ul class="text-sm space-y-2">
-                                    <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Curso: Leitura Dinâmica (4h)</li>
-                                    <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Planner de Metas Milionárias</li>
-                                    <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Comunidade Privada VIP</li>
-                                </ul>
+                            <div class="text-center mt-4">
+                                <button onclick="showFullList()" class="text-emerald-400 hover:text-emerald-300 text-sm font-medium">
+                                    <i class="fas fa-list mr-2"></i>Ver lista completa de 35 livros
+                                </button>
                             </div>
                         </div>
 
                         <div>
+                            <!-- Contador de vendas -->
+                            <div class="flex items-center justify-center gap-2 mb-6 text-sm text-gray-400">
+                                <i class="fas fa-fire text-orange-500"></i>
+                                <span>
+                                    <span class="font-bold text-emerald-400" id="salesCounter">7</span> pessoas compraram hoje
+                                </span>
+                            </div>
+                            
                             <div class="mb-8">
-                                <p class="text-gray-500 line-through text-sm italic uppercase">De R$ 147,00 por apenas:</p>
+                                <p class="text-gray-500 line-through text-sm italic uppercase">Valor real: R$ 347,00</p>
                                 <div class="flex items-end gap-3 mb-2">
                                     <p class="text-5xl font-black">R$ 30,00</p>
                                     <div class="flex flex-col">
-                                        <span class="bg-gradient-to-r from-emerald-500 to-emerald-400 text-black px-3 py-1 rounded-full text-sm font-bold">70% OFF</span>
-                                        <span class="text-xs text-gray-400 mt-1">Economize R$ 117,00</span>
+                                        <span class="bg-gradient-to-r from-emerald-500 to-emerald-400 text-black px-3 py-1 rounded-full text-sm font-bold">91% OFF</span>
+                                        <span class="text-xs text-gray-400 mt-1">Economize R$ 317,00</span>
                                     </div>
                                 </div>
-                                <p class="text-gray-400 text-sm">Apenas R$ 0,86 por livro + bônus</p>
+                                <p class="text-gray-400 text-sm">
+                                    <i class="fas fa-calculator text-emerald-400 mr-1"></i>
+                                    Apenas <span class="font-bold text-emerald-400">R$ 0,85 por livro</span>
+                                </p>
                             </div>
                             
                             <a href="https://pay.cakto.com.br/SEU_ID_MASTER" 
@@ -1082,6 +1145,140 @@
         </div>
     </footer>
 
+    <div id="fullListModal" class="fixed inset-0 z-[101] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
+    <div class="glass-emerald rounded-3xl max-w-4xl w-full max-h-[80vh] overflow-y-auto">
+        <div class="p-8">
+            <div class="flex justify-between items-center mb-8">
+                <div>
+                    <h2 class="text-2xl font-bold">📚 Lista Completa - 35 Livros de Elite</h2>
+                    <p class="text-emerald-400 text-sm mt-1">Curadoria estratégica dos maiores best-sellers de finanças, poder e influência</p>
+                </div>
+                <button onclick="closeFullList()" class="text-gray-400 hover:text-white text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <!-- Contador -->
+            <div class="glass rounded-xl p-4 mb-6 text-center">
+                <div class="inline-flex items-center gap-3 bg-emerald-500/10 px-4 py-2 rounded-full">
+                    <i class="fas fa-books text-emerald-400"></i>
+                    <span class="font-bold text-lg"><span class="text-emerald-400">35</span> Livros Premium</span>
+                    <span class="text-gray-400">•</span>
+                    <span class="text-sm">Apenas <span class="font-bold text-emerald-400">R$ 0,85 por livro</span></span>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-emerald-400">💰 Dinheiro & Negócios</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Pai Rico, Pai Pobre</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Do Mil ao Milhão</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Quem Pensa Enriquece</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> O Lobo de Wall Street</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Trabalhe 4 Horas por Semana</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Ponto de Inflexão</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Estratégia do Oceano Azul</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Negócio do Século XXI</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Fator de Enriquecimento</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Pega a Visão</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> Você Nasceu Rico</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400"></i> O Homem Mais Rico da Babilônia</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-purple-400">🧠 Persuasão & Psicologia</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> PNL: O Segredo das Pessoas de Sucesso</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> A Arte da Sedução</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> Como Convencer em 90 Segundos</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> O Jogo: A Bíblia da Sedução</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> Pré-suasão (Cialdini)</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> O Príncipe (Maquiavel)</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> Previsivelmente Irracional</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> QI de Persuasão</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> Inteligência Emocional (Goleman)</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> As 48 Leis do Poder</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-blue-400">📈 Vendas & Marketing</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> Spin Selling</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> Receita Previsível</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> Storytelling: A Arte de Contar Histórias</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> Administração de Marketing (Kotler)</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> Posicionamento (Al Ries)</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> Neuromarketing</li>
+                    </ul>
+                    
+                    <h3 class="font-bold text-lg mb-4 text-yellow-400 mt-6">📚 Biografias & Mindset</h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400"></i> Steve Jobs: A Biografia</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400"></i> O Alquimista (Paulo Coelho)</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400"></i> Manuscrito Original (Napoleon Hill)</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400"></i> A Arte da Negociação</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400"></i> Startup: Manual do Empreendedor</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400"></i> O Maior Vendedor do Mundo</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400"></i> Os 7 Hábitos das Pessoas Altamente Eficazes</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400"></i> O Poder do Hábito</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-yellow-400"></i> Os Segredos da Mente Milionária</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Resumo -->
+            <div class="glass rounded-xl p-6 mt-8">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="bg-emerald-500/20 p-3 rounded-xl">
+                        <i class="fas fa-calculator text-emerald-400 text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">🎯 Valor Real da Curadoria</h3>
+                        <p class="text-gray-300 text-sm">
+                            35 livros selecionados a dedo • 12 autores best-sellers • 4 categorias estratégicas
+                        </p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div>
+                        <div class="text-2xl font-bold text-emerald-400">35</div>
+                        <div class="text-xs text-gray-400">Livros Premium</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-emerald-400">12</div>
+                        <div class="text-xs text-gray-400">Autores Best-Sellers</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-emerald-400">4</div>
+                        <div class="text-xs text-gray-400">Categorias</div>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-bold text-emerald-400">R$ 0,85</div>
+                        <div class="text-xs text-gray-400">Por livro</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 text-center">
+                <button onclick="closeFullList()" class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-8 rounded-xl transition-all">
+                    <i class="fas fa-times mr-2"></i>Fechar Lista
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Container de Notificações -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Contador de Notificações -->
+    <div class="notification-counter" id="notificationCounter" onclick="toggleNotifications()" style="display: none;">
+        <span id="notificationCount">0</span>
+    </div>
+
     <!-- SCRIPTS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
@@ -1093,7 +1290,7 @@
                 category: "Finanças",
                 categoryColor: "bg-emerald-500/10 text-emerald-400",
                 cover: "img/img1.jpg",
-                pages: "112 páginas",
+                pages: "215 páginas",
                 year: "2005",
                 rating: "4.7/5 (12.543 avaliações)",
                 level: "Iniciante - Intermediário",
@@ -1111,7 +1308,7 @@
                 category: "Poder",
                 categoryColor: "bg-purple-500/10 text-purple-400",
                 cover: "img/img3.jpg",
-                pages: "112 páginas",
+                pages: "452 páginas",
                 year: "1998",
                 rating: "4.8/5 (28.901 avaliações)",
                 level: "Avançado",
@@ -1129,7 +1326,7 @@
                 category: "Vendas",
                 categoryColor: "bg-blue-500/10 text-blue-400",
                 cover: "img/img4.jpg",
-                pages: "218 páginas",
+                pages: "192 páginas",
                 year: "1988",
                 rating: "4.6/5 (8.742 avaliações)",
                 level: "Intermediário",
@@ -1147,7 +1344,7 @@
                 category: "Psicologia",
                 categoryColor: "bg-red-500/10 text-red-400",
                 cover: "img/img5.jpg",
-                pages: "134 páginas",
+                pages: "496 páginas",
                 year: "2001",
                 rating: "4.7/5 (15.328 avaliações)",
                 level: "Avançado",
@@ -1164,8 +1361,8 @@
                 author: "Benjamin Graham • 4.9/5 ⭐",
                 category: "Investimentos",
                 categoryColor: "bg-yellow-500/10 text-yellow-400",
-                cover: "img/img6.jpg",
-                pages: "736 páginas",
+                cover: "https://m.media-amazon.com/images/I/81JpR7Nf1QL._AC_UF1000,1000_QL80_.jpg",
+                pages: "640 páginas",
                 year: "1949",
                 rating: "4.9/5 (42.156 avaliações)",
                 level: "Intermediário - Avançado",
@@ -1183,7 +1380,7 @@
                 category: "Finanças",
                 categoryColor: "bg-emerald-500/10 text-emerald-400",
                 cover: "img/im2.jpg",
-                pages: "152 páginas",
+                pages: "336 páginas",
                 year: "1997",
                 rating: "4.6/5 (58.921 avaliações)",
                 level: "Iniciante",
@@ -1299,6 +1496,158 @@
             icon.classList.toggle('rotate-180');
         }
         
+        // Funções para modal de lista completa
+        function showFullList() {
+            const modal = document.getElementById('fullListModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.classList.add('modal-open');
+        }
+        
+        function closeFullList() {
+            const modal = document.getElementById('fullListModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.classList.remove('modal-open');
+        }
+        
+        // Fechar modal ao clicar fora
+        document.getElementById('fullListModal').addEventListener('click', function(e) {
+            if (e.target === this) closeFullList();
+        });
+        
+        // Notificações falsas de compra - ATUALIZADO PARA 4 SEGUNDOS
+        let notificationCount = 0;
+        let notificationInterval;
+        
+        const fakeBuyers = [
+            { name: "Carlos S.", city: "São Paulo", time: "Agora mesmo" },
+            { name: "Amanda R.", city: "Rio de Janeiro", time: "Há 1 min" },
+            { name: "Roberto L.", city: "Belo Horizonte", time: "Há 2 min" },
+            { name: "Fernanda M.", city: "Porto Alegre", time: "Há 3 min" },
+            { name: "Ricardo P.", city: "Brasília", time: "Há 4 min" },
+            { name: "Juliana C.", city: "Curitiba", time: "Há 5 min" }
+        ];
+        
+        const fakePackages = [
+            "acabou de adquirir o Combo 5 Pilares",
+            "comprou o Pack de 35 Livros",
+            "acessou a Biblioteca Completa",
+            "garantiu o desconto de 91%",
+            "adquiriu acesso vitalício"
+        ];
+        
+        const fakeAvatars = [
+            "https://randomuser.me/api/portraits/men/1.jpg",
+            "https://randomuser.me/api/portraits/women/2.jpg",
+            "https://randomuser.me/api/portraits/men/3.jpg",
+            "https://randomuser.me/api/portraits/women/4.jpg",
+            "https://randomuser.me/api/portraits/men/5.jpg",
+            "https://randomuser.me/api/portraits/women/6.jpg"
+        ];
+        
+        // Função para criar uma notificação
+        function createNotification() {
+            notificationCount++;
+            
+            // Atualizar contador
+            document.getElementById('notificationCount').textContent = notificationCount;
+            document.getElementById('notificationCounter').style.display = 'flex';
+            
+            // Selecionar dados aleatórios
+            const buyer = fakeBuyers[Math.floor(Math.random() * fakeBuyers.length)];
+            const package = fakePackages[Math.floor(Math.random() * fakePackages.length)];
+            const avatar = fakeAvatars[Math.floor(Math.random() * fakeAvatars.length)];
+            
+            // Criar elemento de notificação
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `
+                <div class="notification-header">
+                    <div class="notification-avatar">
+                        <img src="${avatar}" alt="${buyer.name}">
+                    </div>
+                    <div class="notification-info">
+                        <h4>${buyer.name}</h4>
+                        <p>${buyer.city}</p>
+                    </div>
+                    <div class="notification-badge">NEW</div>
+                </div>
+                <div class="notification-content">
+                    <strong>${buyer.name}</strong> ${package} da Mentegoat!
+                </div>
+                <div class="notification-time">
+                    <i class="fas fa-clock"></i>
+                    <span>${buyer.time}</span>
+                </div>
+            `;
+            
+            // Adicionar ao container
+            const container = document.getElementById('notificationContainer');
+            container.appendChild(notification);
+            
+            // Trigger para animação
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            // Remover após 4 segundos (alterado de 8 para 4 segundos)
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 4000);
+        }
+        
+        // Função para alternar visibilidade das notificações
+        function toggleNotifications() {
+            const container = document.getElementById('notificationContainer');
+            const counter = document.getElementById('notificationCounter');
+            
+            if (container.style.display === 'none' || container.style.display === '') {
+                container.style.display = 'flex';
+                counter.style.display = 'none';
+                notificationCount = 0;
+            } else {
+                container.style.display = 'none';
+                counter.style.display = 'flex';
+            }
+        }
+        
+        // Função para iniciar notificações
+        function startNotifications() {
+            // Primeira notificação após 20 segundos
+            setTimeout(() => {
+                createNotification();
+            }, 20000);
+            
+            // Configurar intervalo de 2 minutos (120000 ms)
+            notificationInterval = setInterval(() => {
+                // Criar entre 1 e 2 notificações a cada intervalo
+                const numNotifications = Math.floor(Math.random() * 2) + 1;
+                for (let i = 0; i < numNotifications; i++) {
+                    // Espaçar as notificações em 1 segundo
+                    setTimeout(() => {
+                        createNotification();
+                    }, i * 1000);
+                }
+            }, 120000); // 2 minutos
+        }
+        
+        // Contador de vendas em tempo real
+        let salesCount = 2;
+        const salesInterval = setInterval(() => {
+            salesCount += Math.floor(Math.random() * 2) + 1;
+            document.getElementById('salesCounter').textContent = salesCount;
+            
+            // Efeito de pulso a cada 10 vendas
+            if (salesCount % 10 === 0) {
+                const counter = document.getElementById('salesCounter');
+                counter.classList.add('animate-pulse');
+                setTimeout(() => counter.classList.remove('animate-pulse'), 1000);
+            }
+        }, 45000); // Aumenta a cada 45 segundos
+        
         // Inicializar quando a página carregar
         window.onload = function() {
             // Iniciar timer
@@ -1323,151 +1672,19 @@
                     }
                 });
             });
-        };
-    </script>
-    <script>
-    // Notificações falsas de compra
-    let notificationCount = 0;
-    let notificationInterval;
-    
-    // Dados para notificações falsas
-    const fakeBuyers = [
-        { name: "Carlos S.", city: "São Paulo", time: "2 min atrás" },
-        { name: "Amanda R.", city: "Rio de Janeiro", time: "3 min atrás" },
-        { name: "Roberto L.", city: "Belo Horizonte", time: "4 min atrás" },
-        { name: "Fernanda M.", city: "Porto Alegre", time: "5 min atrás" },
-        { name: "Ricardo P.", city: "Brasília", time: "6 min atrás" },
-        { name: "Juliana C.", city: "Curitiba", time: "7 min atrás" },
-        { name: "Marcelo T.", city: "Fortaleza", time: "8 min atrás" },
-        { name: "Patrícia G.", city: "Salvador", time: "9 min atrás" },
-        { name: "Thiago A.", city: "Recife", time: "10 min atrás" }
-    ];
-    
-    const fakePackages = [
-        "acabou de adquirir o Combo 5 Pilares",
-        "comprou o Master Pack VIP",
-        "acessou a Biblioteca Completa",
-        "garantiu o desconto de 70%",
-        "adquiriu acesso vitalício"
-    ];
-    
-    const fakeAvatars = [
-        "https://randomuser.me/api/portraits/men/1.jpg",
-        "https://randomuser.me/api/portraits/women/2.jpg",
-        "https://randomuser.me/api/portraits/men/3.jpg",
-        "https://randomuser.me/api/portraits/women/4.jpg",
-        "https://randomuser.me/api/portraits/men/5.jpg",
-        "https://randomuser.me/api/portraits/women/6.jpg",
-        "https://randomuser.me/api/portraits/men/7.jpg",
-        "https://randomuser.me/api/portraits/women/8.jpg"
-    ];
-    
-    // Função para criar uma notificação
-    function createNotification() {
-        notificationCount++;
-        
-        // Atualizar contador
-        document.getElementById('notificationCount').textContent = notificationCount;
-        document.getElementById('notificationCounter').style.display = 'flex';
-        
-        // Selecionar dados aleatórios
-        const buyer = fakeBuyers[Math.floor(Math.random() * fakeBuyers.length)];
-        const package = fakePackages[Math.floor(Math.random() * fakePackages.length)];
-        const avatar = fakeAvatars[Math.floor(Math.random() * fakeAvatars.length)];
-        
-        // Criar elemento de notificação
-        const notification = document.createElement('div');
-        notification.className = 'notification';
-        notification.innerHTML = `
-            <div class="notification-header">
-                <div class="notification-avatar">
-                    <img src="${avatar}" alt="${buyer.name}">
-                </div>
-                <div class="notification-info">
-                    <h4>${buyer.name}</h4>
-                    <p>${buyer.city}</p>
-                </div>
-                <div class="notification-badge">NEW</div>
-            </div>
-            <div class="notification-content">
-                <strong>${buyer.name}</strong> ${package} da Mentegoat!
-            </div>
-            <div class="notification-time">
-                <i class="fas fa-clock"></i>
-                <span>${buyer.time}</span>
-            </div>
-        `;
-        
-        // Adicionar ao container
-        const container = document.getElementById('notificationContainer');
-        container.appendChild(notification);
-        
-        // Trigger para animação
-        setTimeout(() => {
-            notification.classList.add('show');
-        }, 10);
-        
-        // Remover após 8 segundos
-        setTimeout(() => {
-            notification.remove();
-        }, 8000);
-    }
-    
-    // Função para alternar visibilidade das notificações
-    function toggleNotifications() {
-        const container = document.getElementById('notificationContainer');
-        const counter = document.getElementById('notificationCounter');
-        
-        if (container.style.display === 'none' || container.style.display === '') {
-            container.style.display = 'flex';
-            counter.style.display = 'none';
-            notificationCount = 0;
-        } else {
-            container.style.display = 'none';
-            counter.style.display = 'flex';
-        }
-    }
-    
-    // Função para iniciar notificações
-    function startNotifications() {
-        // Primeira notificação após 30 segundos
-        setTimeout(() => {
-            createNotification();
-        }, 30000);
-        
-        // Configurar intervalo de 2 minutos (120000 ms)
-        notificationInterval = setInterval(() => {
-            // Criar entre 1 e 3 notificações a cada intervalo
-            const numNotifications = Math.floor(Math.random() * 3) + 1;
-            for (let i = 0; i < numNotifications; i++) {
-                // Espaçar as notificações em 3 segundos
-                setTimeout(() => {
-                    createNotification();
-                }, i * 3000);
-            }
-        }, 120000); // 2 minutos
-    }
-    
-    // Iniciar notificações quando a página carregar
-    window.addEventListener('DOMContentLoaded', () => {
-        startNotifications();
-    });
-    
-    // Parar notificações quando a página perder foco (para não incomodar)
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            clearInterval(notificationInterval);
-        } else {
+            
+            // Iniciar notificações
             startNotifications();
-        }
-    });
-</script>
-    <!-- Container de Notificações -->
-<div class="notification-container" id="notificationContainer"></div>
-
-<!-- Contador de Notificações -->
-<div class="notification-counter" id="notificationCounter" onclick="toggleNotifications()" style="display: none;">
-    <span id="notificationCount">0</span>
-</div>
+        };
+        
+        // Parar notificações quando a página perder foco
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                clearInterval(notificationInterval);
+            } else {
+                startNotifications();
+            }
+        });
+    </script>
 </body>
 </html>
